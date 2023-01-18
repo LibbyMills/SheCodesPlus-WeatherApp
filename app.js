@@ -10,37 +10,33 @@ let dtg = document.querySelector(".dtg");
 dtg.innerHTML = `${day} ${hour}:${minute}`;
 
 function showWx(response) {
-  let wxDescription = response.data.weather[0].description;
-  let location = response.data.name;
+  let wxDescription = response.data.condition.description;
+  let location = response.data.city;
   document.querySelector(
     "#response"
   ).innerHTML = `It is ${wxDescription} in ${location} today`;
   document.querySelector("#today-temp").innerHTML = Math.round(
-    response.data.main.temp
+    response.data.temperature.current
   );
 }
-
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-Input").value;
   searchCity(city);
 }
-
 function getLocalWeather(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
-
 function searchCity(city) {
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiURL).then(showWx);
 }
-
 function searchLocation(position) {
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  let apiURL = `https://api.shecodes.io/weather/v1/current?lon=${position.coords.longitude}&lat=${position.coords.latitude}&key=${apiKey}`;
   axios.get(apiURL).then(showWx);
 }
-let apiKey = "bd3ff741f58b13df62ca6260d9e2d474";
+let apiKey = "cf101ecec2aca96b8t364eed41926oa0";
 let currentPositionButton = document.querySelector("#current-location");
 let form = document.querySelector("#location-input");
 form.addEventListener("submit", handleSubmit);

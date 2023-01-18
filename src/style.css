@@ -54,6 +54,9 @@ ul {
 .response {
   font-size: 24px;
 }
+.first-row {
+  margin-bottom: 20px;
+}
 .wx-icon {
   font-size: 42px;
 }
