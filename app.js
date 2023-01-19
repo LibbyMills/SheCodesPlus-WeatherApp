@@ -6,6 +6,9 @@ if (hour < 10) {
   hour = `0${hour}`;
 }
 let minute = now.getMinutes();
+if (minute < 10) {
+  minute = `0${minute}`;
+}
 let dtg = document.querySelector(".dtg");
 dtg.innerHTML = `${day} ${hour}:${minute}`;
 
