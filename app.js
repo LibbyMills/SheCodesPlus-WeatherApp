@@ -11,13 +11,19 @@ dtg.innerHTML = `${day} ${hour}:${minute}`;
 
 function showWx(response) {
   let wxDescription = response.data.condition.description;
+  let currentWxIcon = document.querySelector("#current-wx-icon");
   let location = response.data.city;
   document.querySelector(
     "#response"
-  ).innerHTML = `It is ${wxDescription} in ${location} today`;
+  ).innerHTML = `In ${location} today, ${wxDescription}...`;
   document.querySelector("#today-temp").innerHTML = Math.round(
     response.data.temperature.current
   );
+  currentWxIcon.setAttribute(
+    "src",
+    `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  currentWxIcon.setAttribute("alt", `${response.data.condition.description}`);
 }
 function handleSubmit(event) {
   event.preventDefault();
