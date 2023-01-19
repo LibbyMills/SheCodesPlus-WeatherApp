@@ -12,11 +12,12 @@ h1 {
   margin: 0;
 }
 button {
+  border: 1px solid rgb(91, 173, 254);
   border-radius: 5px;
+  background: #f8c421;
+  box-shadow: 3px 3px 3px rgb(67, 62, 62);
 }
-a {
-  text-decoration: none;
-}
+
 ul {
   list-style: none;
 }
@@ -50,18 +51,11 @@ ul {
   position: relative;
   left: 15px;
 }
+
 .units {
   position: relative;
-  right: 15px;
-}
-
-.units .active {
-  color: black;
-  cursor: default;
-}
-
-.units .active:hover {
-  text-decoration: none;
+  right: 35px;
+  top: 10px;
 }
 
 .vertical {
@@ -85,6 +79,10 @@ ul {
   right: 15px;
   top: -10px;
 }
+.day {
+  font-weight: bolder;
+}
+
 .forecast-temp {
   font-size: 16px;
   position: relative;

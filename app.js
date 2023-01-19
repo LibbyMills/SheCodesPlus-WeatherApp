@@ -23,13 +23,12 @@ function showForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-
   forecast.forEach(function (forecastDay, index) {
     if (index < 4) {
       forecastHTML =
         forecastHTML +
         `<div class="col-3">
-      <div>${formatDay(forecastDay.time)}</div>
+      <div class="day">${formatDay(forecastDay.time)}</div>
         <div class="row text-center">
           <div class="col-4">
             <div class="wx-icon">
@@ -49,7 +48,6 @@ function showForecast(response) {
     }
   });
   forecastElement.innerHTML = forecastHTML + `</div>`;
-  console.log(response.data.daily[0].condition.icon);
 }
 
 function showWx(response) {
@@ -91,29 +89,9 @@ function searchLocation(position) {
   axios.get(apiURL).then(showWx);
 }
 
-function getFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let temperatureElement = document.querySelector("#today-temp");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-}
-function getCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#today-temp");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-}
-let celsiusTemperature = null;
-let fahrenheitLink = document.querySelector("#fahrenheit");
-let celsiusLink = document.querySelector("#celsius");
 let apiKey = "cf101ecec2aca96b8t364eed41926oa0";
 let currentPositionButton = document.querySelector("#current-location");
 let form = document.querySelector("#location-input");
-fahrenheitLink.addEventListener("click", getFahrenheit);
-celsiusLink.addEventListener("click", getCelsius);
 form.addEventListener("submit", handleSubmit);
 currentPositionButton.addEventListener("click", getLocalWeather);
 searchCity("London");
