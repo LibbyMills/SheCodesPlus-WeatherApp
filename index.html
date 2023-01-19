@@ -39,13 +39,24 @@
         <h1>Today</h1>
         <small class="dtg"></small>
         <div class="row">
-          <div class="col-2 text-center">
+          <div class="col-1 text-center">
             <img src="#" class="current-wx-icon" id="current-wx-icon" />
           </div>
           <div class="col-2 text-center">
             <span class="today-temp" id="today-temp"></span>
-            <span><small class="units">°C</small></span>
           </div>
+          <div class="col-1 text-center">
+            <span class="units"
+              ><small
+                ><a href="#" id="celsius" class="active">°C</a> |<a
+                  href="#"
+                  id="fahrenheit"
+                  >°F</a
+                ></small
+              ></span
+            >
+          </div>
+
           <div class="col-1 text-center">
             <div class="vertical"></div>
           </div>
@@ -53,72 +64,7 @@
             <span class="response" id="response"></span>
           </div>
         </div>
-        <div class="row">
-          <div class="col-3">
-            <div>Tomorrow</div>
-            <div class="row text-center">
-              <div class="col-4">
-                <div class="wx-icon">
-                  <img src="#" class="current-wx-icon" id="current-wx-icon" />
-                </div>
-              </div>
-              <div class="col-4">
-                <ul class="forecast-temp">
-                  <li>6</li>
-                  <li>1</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-3">
-            <div>Tomorrow</div>
-            <div class="row text-center">
-              <div class="col-4">
-                <div class="wx-icon">
-                  <img src="#" class="current-wx-icon" id="current-wx-icon" />
-                </div>
-              </div>
-              <div class="col-4">
-                <ul class="forecast-temp">
-                  <li>6</li>
-                  <li>1</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-3">
-            <div>Tomorrow</div>
-            <div class="row text-center">
-              <div class="col-4">
-                <div class="wx-icon">
-                  <img src="#" class="current-wx-icon" id="current-wx-icon" />
-                </div>
-              </div>
-              <div class="col-4">
-                <ul class="forecast-temp">
-                  <li>6</li>
-                  <li>1</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-3">
-            <div>Tomorrow</div>
-            <div class="row text-center">
-              <div class="col-4">
-                <div class="wx-icon">
-                  <img src="#" class="current-wx-icon" id="current-wx-icon" />
-                </div>
-              </div>
-              <div class="col-4">
-                <ul class="forecast-temp">
-                  <li>6</li>
-                  <li>1</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="forecast"></div>
       </div>
     </div>
     <div class="sign-off">

@@ -14,7 +14,9 @@ h1 {
 button {
   border-radius: 5px;
 }
-
+a {
+  text-decoration: none;
+}
 ul {
   list-style: none;
 }
@@ -45,16 +47,28 @@ ul {
 
 .today-temp {
   font-size: 62px;
+  position: relative;
+  left: 15px;
 }
 .units {
   position: relative;
-  top: -34px;
+  right: 15px;
 }
+
+.units .active {
+  color: black;
+  cursor: default;
+}
+
+.units .active:hover {
+  text-decoration: none;
+}
+
 .vertical {
   border-left: 2px solid black;
   height: 80%;
   position: relative;
-  right: 25px;
+  right: 20px;
 }
 
 .response {
@@ -72,6 +86,7 @@ ul {
   font-size: 16px;
   position: relative;
   top: 10px;
+  right: 25px;
 }
 
 .sign-off {
