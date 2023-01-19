@@ -12,32 +12,44 @@ if (minute < 10) {
 let dtg = document.querySelector(".dtg");
 dtg.innerHTML = `${day} ${hour}:${minute}`;
 
-function showForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  return days[day];
+}
+
+function showForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-3">
-      <div>${day}</div>
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 4) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-3">
+      <div>${formatDay(forecastDay.time)}</div>
         <div class="row text-center">
           <div class="col-4">
             <div class="wx-icon">
-              <img src="#" class="current-wx-icon" id="current-wx-icon" />
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                forecastDay.condition.icon
+              }.png" class="current-wx-icon" id="current-wx-icon" />
             </div>
           </div>
           <div class="col-8">
             <ul class="forecast-temp">
-              <li>4°</li>
-              <li>2°</li>
+              <li>${Math.round(forecastDay.temperature.maximum)}°</li>
+              <li>${Math.round(forecastDay.temperature.minimum)}°</li>
             </ul>
           </div>
         </div>
      </div>`;
+    }
   });
-
   forecastElement.innerHTML = forecastHTML + `</div>`;
+  console.log(response.data.daily[0].condition.icon);
 }
 
 function showWx(response) {
@@ -67,7 +79,6 @@ function getLocalWeather(event) {
 }
 function getForecast(coordinates) {
   let apiForecastURL = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
-  console.log(apiForecastURL);
   axios.get(apiForecastURL).then(showForecast);
 }
 
